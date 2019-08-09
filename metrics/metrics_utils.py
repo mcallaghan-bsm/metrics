@@ -197,7 +197,7 @@ def summary(processors, metrics, context):
             summary[lang] = {'file_count': 0, 'language': lang}
         summary[lang]['file_count'] += 1
         for i in metrics[m]:
-            if i not in ['sloc', 'comments', 'mccabe']:  # include metrics to be used
+            if i not in ['sloc', 'comments', 'mccabe', 'mccabe_avg']:  # include metrics to be used
                 continue
             if not has_key:
                 summary[lang][i] = 0

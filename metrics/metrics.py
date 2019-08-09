@@ -22,6 +22,7 @@ from .metrics_utils import process_file_metrics, process_build_metrics, summary,
     format, load_metrics_from_file
 from .sloc import SLOCMetric
 from .mccabe import McCabeMetric
+from .mccabe_avg import McCabeAvgMetric
 from .position import PosMetric
 from .plugins import load_plugins
 from . import METRICS_FILENAME
@@ -40,7 +41,7 @@ def main():
 
         file_processors, build_processors = load_plugins()
         file_processors = \
-            [SLOCMetric(context), McCabeMetric(context), PosMetric(context)] + \
+            [SLOCMetric(context), McCabeMetric(context), McCabeAvgMetric(context), PosMetric(context)] + \
             [p(context) for p in file_processors]
         build_processors = [p(context) for p in build_processors]
 
@@ -49,6 +50,7 @@ def main():
         build_metrics = process_build_metrics(context, build_processors)
 
         if not context['quiet']:
+            print('DEBUG', file_metrics)
             summary(file_processors, file_metrics, context)
 
         if context['output_format'] is not None:

@@ -44,7 +44,7 @@ class ProcessArgs( object ):
         # default values for possible parameters
         lib_name = ''
         in_file_list = None
-        include_metrics_str = 'sloc:SLOCMetric,mccabe:McCabeMetric'
+        include_metrics_str = 'sloc:SLOCMetric,mccabe:McCabeMetric,mccabe_avg:McCabeAvgMetric'
         exclude_metrics_str = None
         quiet = False
         verbose = 0
@@ -156,12 +156,13 @@ def testpa(pa):
     >>> pa=ProcessArgs('inFile.py')
     >>> testpa(pa)  #doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
     Arguments processed:
-      Include Metric Modules=sloc:SLOCMetric,mccabe:McCabeMetric
+      Include Metric Modules=sloc:SLOCMetric,mccabe:McCabeMetric,mccabe_avg:McCabeAvgMetric
       quiet=False
       verbose=0
     Metrics to be used are:
       Module sloc contains metric class SLOCMetric
       Module mccabe contains metric class McCabeMetric
+      Module mccabe_avg contains metric class McCabeAvgMetric
     Input files:
       inFile.py
     >>>
